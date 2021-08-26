@@ -4,13 +4,12 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Dashboard } from '../screens/Dashboard';
-import { Register } from '../screens/Register';
-import { Resume } from '../screens/Resume';
+import * as View from '../screens';
+
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-export function AppRoutes(){
+const Routes = () => {
   const theme = useTheme();
 
   return(
@@ -27,7 +26,7 @@ export function AppRoutes(){
     >
       <Screen
         name="Listagem"
-        component={Dashboard}
+        component={View.Home}
         options={{
           tabBarIcon: (({ size, color }) => (
             <MaterialIcons
@@ -41,7 +40,7 @@ export function AppRoutes(){
 
       <Screen
         name="Cadastrar"
-        component={Register}
+        component={View.Register}
         options={{
           tabBarIcon: (({ size, color }) => (
             <MaterialIcons
@@ -55,7 +54,7 @@ export function AppRoutes(){
 
       <Screen
         name="Resumo"
-        component={Resume}
+        component={View.Resume}
         options={{
           tabBarIcon: (({ size, color }) => (
             <MaterialIcons
@@ -69,3 +68,5 @@ export function AppRoutes(){
     </Navigator>
   );
 }
+
+export default Routes;
