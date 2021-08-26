@@ -1,70 +1,58 @@
 import React from 'react';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native';
 
-import { Button } from '../../components/Form/Button';
+import * as S from './styles';
 
+import { Button } from '../../components';
 import { categories } from '../../utils/categories';
 
-import {
-  Container,
-  Header,
-  Title,
-  Category,
-  Icon,
-  Name,
-  Separator,
-  Footer,
-} from './styles';
-
-interface Category {
+interface CategoryProps {
   key: string;
   name: string;
 }
 
-interface Props {
-  category: Category;
-  setCategory: (category: Category) => void;
+export interface Props {
+  category: CategoryProps;
+  setCategory: (category: CategoryProps) => void;
   closeSelectCategory: () => void;
 }
 
-export function CategorySelect({
+export const CategorySelect = ({
   category,
   setCategory,
-  closeSelectCategory
-} : Props ){
-
-  function handleCategorySelect(category: Category){
+  closeSelectCategory,
+}: Props) => {
+  function handleCategorySelect(category: CategoryProps) {
     setCategory(category);
   }
 
   return (
-    <Container>
-      <Header>
-        <Title>Categoria</Title>
-      </Header>
+    <S.Container>
+      <S.Header>
+        <S.Title>Categoria</S.Title>
+      </S.Header>
 
       <FlatList
         data={categories}
-        style={{ flex: 1, width: '100%'}}
+        style={{ flex: 1, width: '100%' }}
         keyExtractor={(item) => item.key}
         renderItem={({ item }) => (
-          <Category
-            onPress={() => handleCategorySelect(item)}
+          <S.Category
             isActive={category.key === item.key}
+            onPress={() => handleCategorySelect(item)}
           >
-            <Icon name={item.icon} />
-            <Name>{item.name}</Name>
-          </Category>
+            <S.Icon isActive={category.key === item.key} name={item.icon} />
+            <S.Name isActive={category.key === item.key}>{item.name}</S.Name>
+          </S.Category>
         )}
-        ItemSeparatorComponent={() => <Separator />}
+        ItemSeparatorComponent={() => <S.Separator />}
       />
 
-      <Footer>
-        <Button
-          title="Selecionar"
-          onPress={closeSelectCategory}
-        />
-      </Footer>
-    </Container>
-  )
-}
+      <S.Footer>
+        <Button onPress={closeSelectCategory} title="Selecionar" />
+      </S.Footer>
+    </S.Container>
+  );
+};
+
+export default CategorySelect;
