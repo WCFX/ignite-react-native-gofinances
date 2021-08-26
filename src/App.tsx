@@ -16,13 +16,13 @@ import {
   Poppins_700Bold
 } from '@expo-google-fonts/poppins';
 
-import theme from './src/global/styles/theme';
+import theme from './global/styles/theme';
 
-import { AppRoutes } from './src/routes/app.routes';
+import { AppRoutes } from './routes/app.routes';
 
-import { SignIn } from './src/screens/SignIn';
+import { SignIn } from './screens/SignIn';
 
-import { AuthContext } from './src/AuthContext';
+import { AuthContext } from './AuthContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
