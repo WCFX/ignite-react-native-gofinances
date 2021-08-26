@@ -9,6 +9,9 @@ import { ThemeProvider } from 'styled-components';
 
 import { NavigationContainer } from '@react-navigation/native';
 
+import { AuthProvider } from './hooks/Auth';
+import Routes from './routes';
+
 import {
   useFonts,
   Poppins_400Regular,
@@ -16,13 +19,10 @@ import {
   Poppins_700Bold
 } from '@expo-google-fonts/poppins';
 
-import theme from './global/styles/theme';
+import theme from './styles/Theme';
 
-import { AppRoutes } from './routes/app.routes';
+import { SignIn } from './screens';
 
-import { SignIn } from './screens/SignIn';
-
-import { AuthContext } from './AuthContext';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -38,11 +38,12 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <StatusBar barStyle="light-content" />
 
-        <AuthContext.Provider value={['Joana']}>
-          <SignIn />
-        </AuthContext.Provider>
+        <AuthProvider>
+          <Routes />
+        <StatusBar barStyle="dark-content" />
+
+        </AuthProvider>
 
       </NavigationContainer>
     </ThemeProvider>
