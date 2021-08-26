@@ -1,64 +1,40 @@
-import React, { useContext } from 'react';
+import React from 'react';
+
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import AppleSvg from '../../assets/apple.svg';
-import GoogleSvg from '../../assets/google.svg';
-import LogoSvg from '../../assets/logo.svg';
+import * as S from './styles';
 
-import { AuthContext } from '../../AuthContext';
+import { AppleSvg, GoogleSvg, LogoSvg } from '../../assets';
+import { SignInSocialButton } from '../../components';
+import { useAuth } from '../../hooks/Auth';
 
-import { SignInSocialButton } from '../../components/SignInSocialButton'
+const SignIn = () => {
+  const { user } = useAuth();
+  console.log(user);
 
-import {
-  Container,
-  Header,
-  TitleWrapper,
-  Title,
-  SignInTitle,
-  Footer,
-  FooterWrapper
- } from './styles';
+  return (
+    <S.Container>
+      <S.Header>
+        <S.TitleWrapper>
+          <LogoSvg width={RFValue(120)} height={RFValue(68)} />
+        </S.TitleWrapper>
+        <S.Title>
+          Controle suas{'\n'} finanças de forma{'\n'} muito simples
+        </S.Title>
 
-export function SignIn(){
-  const data = useContext(AuthContext);
-  console.log(data);
+        <S.SignInTitle>
+          Faça seu login com{'\n'} uma das contas abaixo
+        </S.SignInTitle>
+      </S.Header>
 
-
-  return(
-    <Container>
-      <Header>
-        <TitleWrapper>
-          <LogoSvg
-            width={RFValue(120)}
-            height={RFValue(68)}
-          />
-          
-          <Title>
-            Controle suas {'\n'}
-            finanças de forma {'\n'}
-            muito simples
-          </Title>
-        </TitleWrapper>
-
-        <SignInTitle>
-          Faça seu login com {'\n'}
-          uma das contas abaixo
-        </SignInTitle>
-      </Header>
-
-      <Footer>
-        <FooterWrapper>
-          <SignInSocialButton
-            title="Entrar com Google"
-            svg={GoogleSvg}
-          />
-
-          <SignInSocialButton
-            title="Entrar com Apple"
-            svg={AppleSvg}
-          />
-        </FooterWrapper>
-      </Footer>
-    </Container>
+      <S.Footer>
+        <S.FooterWrapper>
+          <SignInSocialButton svg={GoogleSvg} title="Entrar com Google" />
+          <SignInSocialButton svg={AppleSvg} title="Entrar com Apple" />
+        </S.FooterWrapper>
+      </S.Footer>
+    </S.Container>
   );
-}
+};
+
+export default SignIn;
