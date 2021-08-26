@@ -1,6 +1,6 @@
-import styled from 'styled-components/native';
-import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import Feather from '@expo/vector-icons/Feather';
+import styled from 'styled-components/native';
 
 interface TransactionProps {
   type: 'positive' | 'negative';
@@ -8,23 +8,31 @@ interface TransactionProps {
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.shape};
-  border-radius: 5px;
+  border-radius: 18px;
 
   padding: 17px 24px;
   margin-bottom: 16px;
+  elevation: 3;
+  shadow-color: #000;
+  shadow-offset: {
+    width: 0;
+    height: 1;
+  };
+  shadow-opacity: 0.22;
+  shadow-radius: 2.22;
 `;
 
 export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(14)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.title};
 `;
 
 export const Amount = styled.Text<TransactionProps>`
-  font-family: ${({ theme }) => theme.fonts.regular};
   font-size: ${RFValue(20)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
   color: ${({ theme, type }) =>
-  type === 'positive' ? theme.colors.success : theme.colors.attention};
-
+    type === 'positive' ? theme.colors.success : theme.colors.attention};
   margin-top: 2px;
 `;
 
@@ -49,7 +57,6 @@ export const Icon = styled(Feather)`
 export const CategoryName = styled.Text`
   font-size: ${RFValue(14)}px;
   color: ${({ theme }) => theme.colors.text};
-
   margin-left: 17px;
 `;
 
