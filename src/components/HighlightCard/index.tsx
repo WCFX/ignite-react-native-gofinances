@@ -1,16 +1,8 @@
 import React from 'react';
 
-import {
-  Container,
-  Header,
-  Title,
-  Icon,
-  Footer,
-  Amount,
-  LastTransaction,
-} from './styles';
+import * as S from './styles';
 
-interface Props {
+interface HighLightCardProps {
   type: 'up' | 'down' | 'total';
   title: string;
   amount: string;
@@ -20,37 +12,26 @@ interface Props {
 const icon = {
   up: 'arrow-up-circle',
   down: 'arrow-down-circle',
-  total: 'dollar-sign'
-}
+  total: 'dollar-sign',
+};
 
-
-export function HighlightCard({
+const HighlightCard = ({
   type,
   title,
   amount,
-  lastTransaction
-} : Props){
-  return (
-    <Container type={type}>
-      <Header>
-        <Title type={type}>
-          {title}
-        </Title>
-        <Icon
-          name={icon[type]}
-          type={type}
-        />
-      </Header>
+  lastTransaction,
+}: HighLightCardProps) => (
+  <S.Container type={type}>
+    <S.Header>
+      <S.Title type={type}>{title}</S.Title>
+      <S.Icon name={icon[type]} type={type} />
+    </S.Header>
 
-      <Footer>
-        <Amount type={type}>
-          {amount}
-        </Amount>
-        <LastTransaction type={type}>
-          {lastTransaction}
-        </LastTransaction>
-      </Footer>
+    <S.Footer>
+      <S.Amount type={type}>{amount}</S.Amount>
+      <S.LastTransaction type={type}>{lastTransaction}</S.LastTransaction>
+    </S.Footer>
+  </S.Container>
+);
 
-    </Container>
-  )
-}
+export default HighlightCard;
