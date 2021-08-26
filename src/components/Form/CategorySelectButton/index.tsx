@@ -1,24 +1,19 @@
 import React from 'react';
 
-import {
-  Container,
-  Category,
-  Icon,
-} from './styles';
+import * as S from './styles';
 
-interface Props {
+export interface Props {
   title: string;
   onPress: () => void;
 }
 
-export function CategorySelectButton({
-  title,
-  onPress
-}: Props){
-  return(
-    <Container onPress={onPress}>
-      <Category>{title}</Category>
-      <Icon name="chevron-down"/>
-    </Container>
-  )
-}
+const CategorySelectButton = ({ onPress, title }: Props) => {
+  return (
+    <S.Container onPress={onPress}>
+      <S.Category>{title}</S.Category>
+      <S.Icon name="chevron-down" />
+    </S.Container>
+  );
+};
+
+export default CategorySelectButton;
