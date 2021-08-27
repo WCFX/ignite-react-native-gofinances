@@ -1,8 +1,7 @@
-import React , { createContext, useContext, ReactNode } from 'react';
+import React , { useState, createContext, useContext, ReactNode } from 'react';
 
 import * as Google from 'expo-google-app-auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState } from 'react';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -55,9 +54,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 };
 
 const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthContext)
 
   return context;
-};
+}
 
 export { AuthProvider, useAuth };
