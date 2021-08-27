@@ -2,6 +2,7 @@ import React , { createContext, useContext, ReactNode } from 'react';
 
 import * as Google from 'expo-google-app-auth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useState } from 'react';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -23,11 +24,7 @@ interface AuthContextData {
 const AuthContext = createContext({} as AuthContextData);
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const user = {
-    id: '12321',
-    name: 'Wagner Barboza',
-    email: 'wcfx.dev@gmail.com',
-  };
+  const [user, setUser] = useState<User>({} as User)
 
   async function signInWithGoogle() {
     try {
@@ -43,6 +40,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
           name: result.user.name!,
           photo: result.user.photoUrl!
         }
+        setUser(userLogged);
         await AsyncStorage.setItem('@gofinances:user', JSON.stringify(userLogged));
       }
       
