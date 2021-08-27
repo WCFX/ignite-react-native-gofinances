@@ -40,7 +40,8 @@ export default function App() {
       <NavigationContainer>
 
         <AuthProvider>
-          <Routes />
+          {/* <Routes /> */}
+          <SignIn />
         <StatusBar barStyle="dark-content" />
 
         </AuthProvider>
