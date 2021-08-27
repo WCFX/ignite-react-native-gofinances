@@ -25,6 +25,8 @@ import { SignIn } from './screens';
 
 
 export default function App() {
+
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
