@@ -16,13 +16,13 @@ export const Container = styled.View<Pick<Props, 'color'>>`
   border-left-width: 5px;
   border-bottom-width: 2px;
   elevation: 3;
-  shadow-color: #000;
+  /* shadow-color: #000;
   shadow-offset: {
     width: 0;
     height: 1;
   };
   shadow-opacity: 0.22;
-  shadow-radius: 2.22;
+  shadow-radius: 2.22; */
   border-left-color: ${({ color }) => color};
   border-bottom-color: ${({ color }) => color};
 

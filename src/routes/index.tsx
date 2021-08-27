@@ -25,7 +25,7 @@ const Routes = () => {
       }}
     >
       <Screen
-        name="Listagem"
+        name="Home"
         component={View.Home}
         options={{
           tabBarIcon: (({ size, color }) => (
