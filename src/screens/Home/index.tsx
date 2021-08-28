@@ -33,7 +33,7 @@ const Home = () => {
     {} as HighlightData,
   );
 
-  const { signOut } = useAuth();
+  const { signOut, user } = useAuth();
 
   async function loadTransactions() {
     const dataKey = '@gofinances:transactions';
@@ -157,12 +157,12 @@ const Home = () => {
               <S.UserInfo>
                 <S.Photo
                   source={{
-                    uri: 'https://avatars.githubusercontent.com/u/66399640?v=4',
+                    uri: user.photo,
                   }}
                 />
                 <S.User>
                   <S.UserGreeting>Olá, </S.UserGreeting>
-                  <S.UserName>Wagner</S.UserName>
+                  <S.UserName>{user.name}</S.UserName>
                 </S.User>
               </S.UserInfo>
               <S.LogoutButton onPress={signOut}>

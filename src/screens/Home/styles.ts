@@ -66,6 +66,7 @@ export const UserGreeting = styled.Text`
 
 export const UserName = styled(UserGreeting)`
   font-family: ${({ theme }) => theme.fonts.bold};
+  font-size: ${RFValue(14)}px;
 `;
 
 export const Icon = styled(AntDesign)`

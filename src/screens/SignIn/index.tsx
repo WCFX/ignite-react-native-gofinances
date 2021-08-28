@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React, { useState } from 'react';
 import { ActivityIndicator, Alert, Platform } from 'react-native';
 
@@ -11,13 +12,13 @@ import { SignInSocialButton } from '../../components';
 import { useAuth } from '../../hooks/Auth';
 
 const SignIn = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const { signInWithGoogle, signInWithApple } = useAuth();
 
   async function handleSignInWithGoogle() {
     try {
       setIsLoading(true);
-      await signInWithGoogle();
+      return await signInWithGoogle();
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível conectar com a Google');
@@ -28,7 +29,7 @@ const SignIn = () => {
 
   async function handleSignInWithApple() {
     try {
-      await signInWithApple();
+      return await signInWithApple();
     } catch (error) {
       throw new Error(error);
     } finally {
@@ -60,24 +61,38 @@ const SignIn = () => {
 
       <S.Footer>
         <S.FooterWrapper>
-          {Platform.OS === 'android' ? (
-            <SignInSocialButton
-              onPress={handleSignInWithGoogle}
-              svg={GoogleSvg}
-              title="Entrar com Google"
-            />
+          {Platform.OS === 'ios' ? (
+            <>
+              <SignInSocialButton
+                onPress={handleSignInWithGoogle}
+                svg={GoogleSvg}
+                title="Entrar com Google"
+              />
+              <SignInSocialButton
+                onPress={handleSignInWithApple}
+                svg={AppleSvg}
+                title="Entrar com Apple"
+              />
+              <SignInSocialButton
+                onPress={handleSocialNotImplemented}
+                svg={FacebookSvg}
+                title="Entrar com Facebook"
+              />
+            </>
           ) : (
-            <SignInSocialButton
-              onPress={handleSignInWithApple}
-              svg={AppleSvg}
-              title="Entrar com Apple"
-            />
+            <>
+              <SignInSocialButton
+                onPress={handleSignInWithGoogle}
+                svg={GoogleSvg}
+                title="Entrar com Google"
+              />
+              <SignInSocialButton
+                onPress={handleSocialNotImplemented}
+                svg={FacebookSvg}
+                title="Entrar com Facebook"
+              />
+            </>
           )}
-          <SignInSocialButton
-            onPress={handleSocialNotImplemented}
-            svg={FacebookSvg}
-            title="Entrar com Facebook"
-          />
         </S.FooterWrapper>
       </S.Footer>
     </S.Container>
