@@ -17,6 +17,7 @@ import {
   InputForm,
   TransactionButton,
 } from '../../components';
+import { useAuth } from '../../hooks/Auth';
 import CategorySelect from '../CategorySelect';
 
 interface FormData {
@@ -33,6 +34,7 @@ const schema = Yup.object().shape({
 
 const Register = () => {
   const { navigate } = useNavigation();
+  const { user } = useAuth();
 
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
@@ -80,7 +82,7 @@ const Register = () => {
       date: new Date(),
     };
     try {
-      const dataKey = '@gofinances:transactions';
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
 
@@ -165,6 +167,3 @@ const Register = () => {
 };
 
 export default Register;
-function alert(arg0: string) {
-  throw new Error('Function not implemented.');
-}

@@ -12,6 +12,7 @@ import Theme from '../../styles/Theme';
 import * as S from './styles';
 
 import HistoryCard from '../../components/HistoryCard';
+import { useAuth } from '../../hooks/Auth';
 import { categories } from '../../utils/categories';
 
 interface TransactionData {
@@ -33,6 +34,7 @@ interface CategoryData {
 }
 
 const Resume = () => {
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
@@ -49,7 +51,7 @@ const Resume = () => {
   }
 
   async function loadData() {
-    const dataKey = '@gofinances:transactions';
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
     setIsLoading(true);
