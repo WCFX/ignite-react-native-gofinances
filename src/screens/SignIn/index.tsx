@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 import React, { useState } from 'react';
 import { ActivityIndicator, Alert, Platform } from 'react-native';
 
@@ -18,11 +17,10 @@ const SignIn = () => {
   async function handleSignInWithGoogle() {
     try {
       setIsLoading(true);
-      return await signInWithGoogle();
+      await signInWithGoogle();
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível conectar com a Google');
-    } finally {
       setIsLoading(false);
     }
   }
@@ -31,8 +29,8 @@ const SignIn = () => {
     try {
       return await signInWithApple();
     } catch (error) {
-      throw new Error(error);
-    } finally {
+      console.log(error);
+      Alert.alert('Não foi possível conectar com a Apple');
       setIsLoading(false);
     }
   }
