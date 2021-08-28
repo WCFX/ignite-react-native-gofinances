@@ -27,7 +27,7 @@ const SignIn = () => {
 
   async function handleSignInWithApple() {
     try {
-      return await signInWithApple();
+      await signInWithApple();
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível conectar com a Apple');
