@@ -9,6 +9,7 @@ import * as S from './styles';
 
 import { HighlightCard, TransactionCard } from '../../components';
 import { DataProps as TransactionCardProps } from '../../components/TransactionCard';
+import { useAuth } from '../../hooks/Auth';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -31,6 +32,8 @@ const Home = () => {
   const [highlightData, setHighlightData] = useState<HighlightData>(
     {} as HighlightData,
   );
+
+  const { signOut } = useAuth();
 
   async function loadTransactions() {
     const dataKey = '@gofinances:transactions';
@@ -109,7 +112,7 @@ const Home = () => {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionExpensives}`,
+        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
       },
       expensives: {
         amount: expensiveTotal.toLocaleString('pt-BR', {
@@ -162,10 +165,8 @@ const Home = () => {
                   <S.UserName>Wagner</S.UserName>
                 </S.User>
               </S.UserInfo>
-              <S.LogoutButton>
-                <S.LogoutButtonText>
-                  <S.Icon name="poweroff" />
-                </S.LogoutButtonText>
+              <S.LogoutButton onPress={signOut}>
+                <S.Icon name="poweroff" />
               </S.LogoutButton>
             </S.UserWrapper>
           </S.Header>

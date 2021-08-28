@@ -15,6 +15,7 @@ export const ContainerButton = styled(RectButton)`
 export const ContainerSvg = styled.View`
   background-color: ${({ theme }) => theme.colors.shape};
   height: 100%;
+  width: ${RFValue(50)}px;
   justify-content: center;
   align-items: center;
   padding: ${RFValue(16)}px;
@@ -24,7 +25,8 @@ export const ContainerSvg = styled.View`
 
 export const Title = styled.Text`
   flex: 1;
-  text-align: center;
+  align-self: center;
+  padding-left: ${RFValue(28)}px;
   color: ${({ theme }) => theme.colors.title};
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${RFValue(14)}px;

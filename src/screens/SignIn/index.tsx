@@ -1,11 +1,11 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import * as S from './styles';
 
-import { AppleSvg, GoogleSvg, LogoSvg } from '../../assets';
+import { AppleSvg, FacebookSvg, GoogleSvg, LogoSvg } from '../../assets';
 import { SignInSocialButton } from '../../components';
 import { useAuth } from '../../hooks/Auth';
 
@@ -29,6 +29,10 @@ const SignIn = () => {
     }
   }
 
+  function handleSocialNotImplemented() {
+    Alert.alert('Essa Função ainda será implementada.');
+  }
+
   return (
     <S.Container>
       <S.Header>
@@ -46,15 +50,23 @@ const SignIn = () => {
 
       <S.Footer>
         <S.FooterWrapper>
+          {Platform.OS === 'android' ? (
+            <SignInSocialButton
+              onPress={handleSignInWithGoogle}
+              svg={GoogleSvg}
+              title="Entrar com Google"
+            />
+          ) : (
+            <SignInSocialButton
+              onPress={handleSignInWithApple}
+              svg={AppleSvg}
+              title="Entrar com Apple"
+            />
+          )}
           <SignInSocialButton
-            onPress={handleSignInWithGoogle}
-            svg={GoogleSvg}
-            title="Entrar com Google"
-          />
-          <SignInSocialButton
-            onPress={handleSignInWithApple}
-            svg={AppleSvg}
-            title="Entrar com Apple"
+            onPress={handleSocialNotImplemented}
+            svg={FacebookSvg}
+            title="Entrar com Facebook"
           />
         </S.FooterWrapper>
       </S.Footer>

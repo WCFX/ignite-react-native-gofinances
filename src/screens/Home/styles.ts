@@ -53,7 +53,6 @@ export const Photo = styled.Image`
 export const LogoutButton = styled(RectButton)<RectButtonProps>`
   padding: 20px;
 `;
-export const LogoutButtonText = styled.Text``;
 
 export const User = styled.View`
   margin-left: 17px;
