@@ -51,6 +51,7 @@ const Home = () => {
       if (collectionFiltered.length === 0) return 0;
 
       const lastTransaction = new Date(
+        // eslint-disable-next-line prefer-spread
         Math.max.apply(
           Math,
           collectionFiltered.map((transaction) =>
@@ -149,6 +150,7 @@ const Home = () => {
 
   useEffect(() => {
     loadTransactions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useFocusEffect(

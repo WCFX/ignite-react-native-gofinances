@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
