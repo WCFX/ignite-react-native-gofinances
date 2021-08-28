@@ -44,12 +44,18 @@ const Home = () => {
       collection: DataListProps[],
       type: 'positive' | 'negative',
     ) {
+      const collectionFiltered = collection.filter(
+        (transaction) => transaction.type === type,
+      );
+
+      if (collectionFiltered.length === 0) return 0;
+
       const lastTransaction = new Date(
         Math.max.apply(
           Math,
-          collection
-            .filter((transaction) => transaction.type === type)
-            .map((transaction) => new Date(transaction.date).getTime()),
+          collectionFiltered.map((transaction) =>
+            new Date(transaction.date).getTime(),
+          ),
         ),
       );
 
@@ -102,7 +108,10 @@ const Home = () => {
       transactions,
       'negative',
     );
-    const totalInterval = `01 a ${lastTransactionExpensives}`;
+    const totalInterval =
+      lastTransactionExpensives === 0
+        ? 'Não há transações'
+        : `01 a ${lastTransactionExpensives}`;
 
     const total = entriesTotal - expensiveTotal;
 
@@ -112,14 +121,20 @@ const Home = () => {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
+        lastTransaction:
+          lastTransactionEntries === 0
+            ? 'Não existe registros de entrada'
+            : `Última entrada dia ${lastTransactionEntries}`,
       },
       expensives: {
         amount: expensiveTotal.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: `Última saída dia ${lastTransactionExpensives}`,
+        lastTransaction:
+          lastTransactionExpensives === 0
+            ? 'Não teve gastos'
+            : `Última saída dia ${lastTransactionExpensives}`,
       },
       total: {
         amount: total.toLocaleString('pt-BR', {

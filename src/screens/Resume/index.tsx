@@ -111,7 +111,7 @@ const Resume = () => {
   return (
     <S.Container>
       <S.Header>
-        <S.Title>Resumo por categoria</S.Title>
+        <S.Title>Resumo de Gastos</S.Title>
       </S.Header>
       {isLoading ? (
         <S.LoadingContainer>

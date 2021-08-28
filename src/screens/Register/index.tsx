@@ -111,7 +111,7 @@ const Register = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <S.Container>
         <S.Header>
-          <S.Title>Cadastro</S.Title>
+          <S.Title>Cadastro de itens</S.Title>
         </S.Header>
 
         <S.Form>
