@@ -10,14 +10,22 @@ import { SignInSocialButton } from '../../components';
 import { useAuth } from '../../hooks/Auth';
 
 const SignIn = () => {
-  const { signInWithGoogle } = useAuth();
+  const { signInWithGoogle, signInWithApple } = useAuth();
 
-  async function handleSignInButton() {
+  async function handleSignInWithGoogle() {
     try {
       await signInWithGoogle();
     } catch (error) {
       console.log(error);
       Alert.alert('Não foi possível conectar com a Google');
+    }
+  }
+
+  async function handleSignInWithApple() {
+    try {
+      await signInWithApple();
+    } catch (error) {
+      throw new Error(error);
     }
   }
 
@@ -39,11 +47,15 @@ const SignIn = () => {
       <S.Footer>
         <S.FooterWrapper>
           <SignInSocialButton
-            onPress={handleSignInButton}
+            onPress={handleSignInWithGoogle}
             svg={GoogleSvg}
             title="Entrar com Google"
           />
-          <SignInSocialButton svg={AppleSvg} title="Entrar com Apple" />
+          <SignInSocialButton
+            onPress={handleSignInWithApple}
+            svg={AppleSvg}
+            title="Entrar com Apple"
+          />
         </S.FooterWrapper>
       </S.Footer>
     </S.Container>

@@ -1,12 +1,12 @@
 import { Platform, FlatList } from 'react-native';
 
+import AntDesign from '@expo/vector-icons/AntDesign';
 import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 import {
   getBottomSpace,
   getStatusBarHeight,
 } from 'react-native-iphone-x-helper';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import styled from 'styled-components/native';
 
 import { DataListProps } from '.';

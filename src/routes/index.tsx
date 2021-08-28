@@ -1,72 +1,19 @@
 import React from 'react';
-import { Platform } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { useTheme } from 'styled-components';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import * as View from '../screens';
+import { NavigationContainer } from '@react-navigation/native';
 
-
-const { Navigator, Screen } = createBottomTabNavigator();
+import { useAuth } from '../hooks/Auth';
+import AppRoutes from './app.routes';
+import AuthRoutes from './auth.routes';
 
 const Routes = () => {
-  const theme = useTheme();
+  const { user } = useAuth();
 
-  return(
-    <Navigator
-      tabBarOptions={{
-        activeTintColor: theme.colors.secondary,
-        inactiveTintColor: theme.colors.text,
-        labelPosition: 'beside-icon',
-        style: {
-          paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: 88
-        }
-      }}
-    >
-      <Screen
-        name="Home"
-        component={View.Home}
-        options={{
-          tabBarIcon: (({ size, color }) => (
-            <MaterialIcons
-              name="format-list-bulleted"
-              size={size}
-              color={color}
-            />
-          ))
-        }}
-      />
-
-      <Screen
-        name="Cadastrar"
-        component={View.Register}
-        options={{
-          tabBarIcon: (({ size, color }) => (
-            <MaterialIcons
-              name="attach-money"
-              size={size}
-              color={color}
-            />
-          ))
-        }}
-      />
-
-      <Screen
-        name="Resumo"
-        component={View.Resume}
-        options={{
-          tabBarIcon: (({ size, color }) => (
-            <MaterialIcons
-              name="pie-chart"
-              size={size}
-              color={color}
-            />
-          ))
-        }}
-      />
-    </Navigator>
+  return (
+    <NavigationContainer>
+      {user ? <AppRoutes /> : <AuthRoutes />}
+    </NavigationContainer>
   );
-}
+};
 
 export default Routes;
