@@ -26,6 +26,7 @@ interface AuthContextData {
   signInWithGoogle(): Promise<void>;
   signInWithApple(): Promise<void>;
   signOut(): Promise<void>;
+  userStorageLoading: boolean;
 }
 
 const AuthContext = createContext({} as AuthContextData);
@@ -103,7 +104,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider
-      value={{ user, signInWithGoogle, signInWithApple, signOut }}
+      value={{
+        user,
+        signInWithGoogle,
+        signInWithApple,
+        signOut,
+        userStorageLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

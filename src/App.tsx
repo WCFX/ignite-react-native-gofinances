@@ -16,18 +16,19 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from './styles/Theme';
 
-import { AuthProvider } from './hooks/Auth';
+import { AuthProvider, useAuth } from './hooks/Auth';
 import Routes from './routes';
-import { SignIn } from './screens';
 
 export default function App() {
+  const { userStorageLoading } = useAuth();
+
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
     Poppins_700Bold,
   });
 
-  if (!fontsLoaded) {
+  if (!fontsLoaded || userStorageLoading) {
     return <AppLoading />;
   }
 

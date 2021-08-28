@@ -25,8 +25,7 @@ export const ContainerSvg = styled.View`
 
 export const Title = styled.Text`
   flex: 1;
-  align-self: center;
-  padding-left: ${RFValue(28)}px;
+  text-align: center;
   color: ${({ theme }) => theme.colors.title};
   font-family: ${({ theme }) => theme.fonts.medium};
   font-size: ${RFValue(14)}px;
